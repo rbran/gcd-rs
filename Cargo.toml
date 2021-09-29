@@ -1,0 +1,31 @@
+[package]
+name = "gcd-rs"
+version = "0.1.0"
+authors = ["Rubens Brandao <git@rubens.io>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "gcd"
+path = "src/lib.rs"
+
+[[example]]
+name = "gcd-extract"
+path = "src/examples/extract.rs"
+
+[[example]]
+name = "gcd-create"
+path = "src/examples/create.rs"
+
+[[example]]
+name = "gcd-read"
+path = "src/examples/read.rs"
+
+
+[dependencies]
+byteorder = "1"
+nom = "7.0"
+serde = { version = "1.0", features = ["derive"] }
+
+[dev-dependencies]
+serde_yaml = "0.8"
