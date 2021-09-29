@@ -1,6 +1,12 @@
 [package]
 name = "gcd-rs"
 version = "0.1.0"
+description = "Encoder and decoder for GCD files"
+license = "MIT"
+readme = "README.md"
+keywords = ["encoding", "decoding", "gcd"]
+repository = "https://github.com/rbran/gcd-rs"
+homepage = "https://github.com/rbran/gcd-rs"
 authors = ["Rubens Brandao <git@rubens.io>"]
 edition = "2018"
 
