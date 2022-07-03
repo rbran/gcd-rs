@@ -88,6 +88,11 @@ impl DescriptorTypeRecord {
             DescriptorTypeRecord::Simple(descs) => descs.iter(),
         }
     }
+    pub fn iter_mut(&mut self) -> std::slice::IterMut<DescriptorType> {
+        match self {
+            DescriptorTypeRecord::Simple(descs) => descs.iter_mut(),
+        }
+    }
 }
 
 impl Default for DescriptorTypeRecord {
@@ -152,6 +157,11 @@ impl DescriptorRecord {
     pub fn iter(&self) -> std::slice::Iter<DescriptorData> {
         match self {
             DescriptorRecord::Simple(descs) => descs.iter(),
+        }
+    }
+    pub fn iter_mut(&mut self) -> std::slice::IterMut<DescriptorData> {
+        match self {
+            DescriptorRecord::Simple(descs) => descs.iter_mut(),
         }
     }
     pub fn record_type_len(&self) -> u16 {
