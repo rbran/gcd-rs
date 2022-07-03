@@ -93,30 +93,7 @@ impl DescriptorData {
         self.descriptor_type().data_len()
     }
     pub const fn decode(&self) -> Option<DescriptorDecoded> {
-        DescriptorDecoded::decode(self)
-    }
-}
-
-#[derive(Debug, PartialEq, Hash, Eq, Clone, Serialize, Deserialize)]
-pub enum DescriptorDecoded {
-    End,
-    HWID(u16),
-    XorKey(u8),
-    FirmwareId(u16),
-    FirmwareLen(u32),
-    FirmwareAddr(u32),
-    VersionSw(Version),
-    VersionRemote(Version),
-    VersionId12(Version),
-    VersionId20(Version),
-    Firmware2000P1Len(u32),
-    Firmware2000P2Len(u32),
-    Firmware2000P3Len(u32),
-}
-
-impl DescriptorDecoded {
-    pub const fn decode(src: &DescriptorData) -> Option<DescriptorDecoded> {
-        match src {
+        match self {
             DescriptorData::End => Some(DescriptorDecoded::End),
             DescriptorData::U8 { id: 10, data } => {
                 Some(DescriptorDecoded::XorKey(*data))
@@ -159,6 +136,71 @@ impl DescriptorDecoded {
             DescriptorData::U32 { .. } => None,
             DescriptorData::U64 { .. } => None,
             DescriptorData::Other { .. } => None,
+        }
+    }
+}
+
+#[derive(Debug, PartialEq, Hash, Eq, Clone, Serialize, Deserialize)]
+pub enum DescriptorDecoded {
+    End,
+    HWID(u16),
+    XorKey(u8),
+    FirmwareId(u16),
+    FirmwareLen(u32),
+    FirmwareAddr(u32),
+    VersionSw(Version),
+    VersionRemote(Version),
+    VersionId12(Version),
+    VersionId20(Version),
+    Firmware2000P1Len(u32),
+    Firmware2000P2Len(u32),
+    Firmware2000P3Len(u32),
+}
+
+impl DescriptorDecoded {
+    pub const fn encode(self) -> DescriptorData {
+        match self {
+            DescriptorDecoded::End => DescriptorData::End,
+            DescriptorDecoded::XorKey(data) => {
+                DescriptorData::U8 { id: 10, data }
+            }
+            DescriptorDecoded::HWID(data) => {
+                DescriptorData::U16 { id: 9, data }
+            }
+            DescriptorDecoded::FirmwareId(data) => {
+                DescriptorData::U16 { id: 10, data }
+            }
+            DescriptorDecoded::VersionId12(version) => DescriptorData::U16 {
+                id: 12,
+                data: version.value(),
+            },
+            DescriptorDecoded::VersionSw(version) => DescriptorData::U16 {
+                id: 13,
+                data: version.value(),
+            },
+            DescriptorDecoded::VersionId20(version) => DescriptorData::U16 {
+                id: 20,
+                data: version.value(),
+            },
+            DescriptorDecoded::VersionRemote(version) => DescriptorData::U16 {
+                id: 21,
+                data: version.value(),
+            },
+            DescriptorDecoded::FirmwareLen(data) => {
+                DescriptorData::U32 { id: 21, data }
+            }
+            DescriptorDecoded::Firmware2000P1Len(data) => {
+                DescriptorData::U32 { id: 23, data }
+            }
+            DescriptorDecoded::Firmware2000P2Len(data) => {
+                DescriptorData::U32 { id: 24, data }
+            }
+            DescriptorDecoded::Firmware2000P3Len(data) => {
+                DescriptorData::U32 { id: 25, data }
+            }
+            DescriptorDecoded::FirmwareAddr(data) => {
+                DescriptorData::U32 { id: 26, data }
+            }
         }
     }
 }
