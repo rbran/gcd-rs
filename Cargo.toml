@@ -1,6 +1,6 @@
 [package]
 name = "gcd-rs"
-version = "0.1.0"
+version = "0.1.1"
 description = "Encoder and decoder for GCD files"
 license = "MIT"
 readme = "README.md"
