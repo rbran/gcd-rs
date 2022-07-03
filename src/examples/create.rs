@@ -1,6 +1,6 @@
-use gcd::composer::Composer;
-use gcd::record::firmware::FirmwareRecord;
-use gcd::Record;
+use gcd_rs::composer::Composer;
+use gcd_rs::record::firmware::FirmwareRecord;
+use gcd_rs::Record;
 
 use std::env;
 use std::fs::File;

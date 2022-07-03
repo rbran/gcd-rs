@@ -1,6 +1,6 @@
-use gcd::parser::Parser;
-use gcd::record::descriptor::descriptor_data::DescriptorDecoded;
-use gcd::Record;
+use gcd_rs::parser::Parser;
+use gcd_rs::record::descriptor::descriptor_data::DescriptorDecoded;
+use gcd_rs::Record;
 
 use std::env;
 use std::fs::File;

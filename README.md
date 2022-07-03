@@ -7,8 +7,8 @@ This lib helps read/write GCD files.
 ```rust
 use std::env;
 use std::fs::File;
-use gcd::parser::Parser;
-use gcd::Record;
+use gcd_rs::parser::Parser;
+use gcd_rs::Record;
 
 fn main() {
     //open the gcd file
@@ -30,9 +30,9 @@ fn main() {
 
 ## Writing GCD File
 ```rust
-use gcd::composer::Composer;
-use gcd::record::text::TextRecord;
-use gcd::Record;
+use gcd_rs::composer::Composer;
+use gcd_rs::record::text::TextRecord;
+use gcd_rs::Record;
 use std::env;
 use std::fs::File;
 

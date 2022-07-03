@@ -1,4 +1,4 @@
-use gcd::Record;
+use gcd_rs::Record;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]

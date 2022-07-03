@@ -1,6 +1,6 @@
-use gcd::composer::Composer;
-use gcd::record::text::TextRecord;
-use gcd::Record;
+use gcd_rs::composer::Composer;
+use gcd_rs::record::text::TextRecord;
+use gcd_rs::Record;
 use std::env;
 use std::fs::File;
 
